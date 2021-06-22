@@ -9,9 +9,9 @@ $sql->execute([$id]);
 if (!empty($sql->fetchAll())) {
     $sql->execute([$id]);
     foreach ($sql as $row) {
-        echo $row['name'], "\n";
-        echo $row['age'], "\n";
+        echo 'name:', $row['name'], "\n";
+        echo 'age:', $row['age'], "\n";
     }
-}else{
+} else {
     echo '対象のレコードが見つかりません';
 }
