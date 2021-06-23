@@ -21,7 +21,7 @@ if (!empty($sql->fetchAll())) {
         'name' => $name,
         'age' => $age
     );
-    echo json_encode($data);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 } else {
     echo '対象のレコードが見つかりません';
 
@@ -29,5 +29,5 @@ if (!empty($sql->fetchAll())) {
     $data = array(
         'message' => '対象のレコードが見つかりません'
     );
-    echo json_encode($data);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 }
