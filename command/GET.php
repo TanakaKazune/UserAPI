@@ -6,6 +6,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=User_data;charset=utf8', 'staff', 'p
 $sql = $pdo->prepare('select * from user_information where user_id=?');
 $sql->execute([$id]);
 
+//指定されたユーザーが存在するかの確認
 if (!empty($sql->fetchAll())) {
     $sql->execute([$id]);
     foreach ($sql as $row) {
@@ -16,6 +17,7 @@ if (!empty($sql->fetchAll())) {
     echo 'name:', $name, "\n";
     echo 'age:', $age, "\n";
 
+    //jsonファイルでの出力
     header('Access-Control-Allow-Origin: *');
     $data = array(
         'name' => $name,
@@ -25,6 +27,7 @@ if (!empty($sql->fetchAll())) {
 } else {
     echo '対象のレコードが見つかりません';
 
+    //jsonファイルでの出力
     header('Access-Control-Allow-Origin: *');
     $data = array(
         'message' => '対象のレコードが見つかりません'

@@ -2,28 +2,22 @@
 
 $method = $_REQUEST['method'];
 
+//それぞれのパラメーターに値が存在する時に配列に代入
 $query = [];
 if (isset($_REQUEST['id'])) {
     $query['id'] = $_REQUEST['id'];
-}else{
-    unset($query['id']);
 }
-
 if (isset($_REQUEST['name'])) {
     $query['name'] = $_REQUEST['name'];
-}else{
-    unset($query['name']);
 }
-
 if (isset($_REQUEST['age'])) {
     $query['age'] = $_REQUEST['age'];
-}else{
-    unset($query['age']);
 }
 
 $query = http_build_query($query);
 
-$opts = array('http' =>
+$opts = array(
+    'http' =>
     array(
         'method'  => $method,
         'content' => '?id=2'
