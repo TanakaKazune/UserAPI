@@ -27,7 +27,20 @@ if (!empty($sql->fetchAll())) {
     if ($sql->execute([$name, $age, $id])) {
         echo 'name:', "$name", "\n";
         echo 'age:', "$age", "\n";
+
+        header('Access-Control-Allow-Origin: *');
+        $data = array(
+            'name' => $name,
+            'age' => $age
+        );
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 } else {
     echo '対象のレコードが見つかりません';
+
+    header('Access-Control-Allow-Origin: *');
+    $data = array(
+        'message' => '対象のレコードが見つかりません'
+    );
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 }
