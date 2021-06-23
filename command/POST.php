@@ -12,3 +12,8 @@ foreach ($pdo->query('select last_insert_id()') as $row) {
 }
 
 echo 'user_id:', $id;
+header('Access-Control-Allow-Origin: *');
+$data = array(
+    'id' => $id,
+);
+echo json_encode($data, JSON_UNESCAPED_UNICODE);
