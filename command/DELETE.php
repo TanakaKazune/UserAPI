@@ -10,9 +10,19 @@ if (!empty($sql->fetchAll())) {
     $sql = $pdo->prepare('delete from user_information where user_id=?');
     if ($sql->execute([$id])) {
         echo '対象のレコードを削除しました。';
-    } else {
-        echo '対象のレコードの削除に失敗しました。';
+
+        header('Access-Control-Allow-Origin: *');
+        $data = array(
+            'message' => '対象のレコードを削除しました。'
+        );
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 } else {
     echo '対象のレコードが見つかりません';
+
+    header('Access-Control-Allow-Origin: *');
+    $data = array(
+        'message' => '対象のレコードが見つかりません'
+    );
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
 }
