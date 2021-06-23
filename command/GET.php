@@ -9,9 +9,25 @@ $sql->execute([$id]);
 if (!empty($sql->fetchAll())) {
     $sql->execute([$id]);
     foreach ($sql as $row) {
-        echo 'name:', $row['name'], "\n";
-        echo 'age:', $row['age'], "\n";
+        $name = $row['name'];
+        $age = $row['age'];
     }
+
+    echo 'name:', $name, "\n";
+    echo 'age:', $age, "\n";
+
+    header('Access-Control-Allow-Origin: *');
+    $data = array(
+        'name' => $name,
+        'age' => $age
+    );
+    echo json_encode($data);
 } else {
     echo '対象のレコードが見つかりません';
+
+    header('Access-Control-Allow-Origin: *');
+    $data = array(
+        'message' => '対象のレコードが見つかりません'
+    );
+    echo json_encode($data);
 }
